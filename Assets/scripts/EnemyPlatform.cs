@@ -1,9 +1,11 @@
+using UnityEditor;
 using UnityEditor.Build;
 using UnityEngine;
 
 public class EnemyPlatform : MonoBehaviour
 {
     public PlayerScript playerScript;
+    HelperScript helper;
 
     float xv;
     bool facingRight = true;
@@ -43,6 +45,7 @@ public class EnemyPlatform : MonoBehaviour
     void Start()
     {
         xv = 2f;
+        helper = gameObject.AddComponent<HelperScript>();
 
         rb = GetComponent<Rigidbody2D>();
         groundLayerMask = LayerMask.GetMask("Ground");
@@ -51,8 +54,10 @@ public class EnemyPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("Enemy says: The player has " + playerScript.health + " lives");
-        float yv = rb.linearVelocity.y;
+        //print("Enemy says: The player has " + playerScript.health + " lives");
+
+        
+            float yv = rb.linearVelocity.y;
 
         if (xv < 0)
         {

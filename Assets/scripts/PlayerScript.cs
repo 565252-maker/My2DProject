@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    HelperScript helper;
+
     public float health = 5, maxHealth = 5;
 
     [SerializeField] private HealthBarUI healthbar;
@@ -48,7 +50,8 @@ public class PlayerScript : MonoBehaviour
     }
     void Start()
     {
-       
+        helper = gameObject.AddComponent<HelperScript>();
+
         rb = GetComponent<Rigidbody2D>();
         groundLayerMask = LayerMask.GetMask("Ground");
     }
@@ -62,13 +65,19 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown("h") && health < 5)
         {
             health += 1;
+
         }
         if (Input.GetKeyDown("g") && health > 0)
         {
             health -= 1;
+        }
+        if (Input.GetKeyDown("h"))
+        {
+            helper.HelloWorld();
 
         }
-        
+
+
 
         xv = 0;
         yv = rb.linearVelocity.y;
